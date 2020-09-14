@@ -238,6 +238,9 @@ Unlike most other languages, V only allows defining variables in functions.
 Global (module level) variables are not allowed. There's no global state in V
 (see [Pure functions by default](#pure-functions-by-default) for details).
 
+For consistency across different code bases, all variable and function names
+must use the `snake_case` style, as opposed to type names, which must use `PascalCase`.
+
 ### Mutable variables
 
 ```v
@@ -352,7 +355,14 @@ println(s) // "hello world"
 
 In V, a string is a read-only array of bytes. String data is encoded using UTF-8.
 
-Strings are immutable.
+Just like in Go and Java, strings are immutable, which means their values cannot be changed.
+
+The following code will raise an error:
+
+```v
+mut s := 'hello'
+s[0] = `H`
+```
 
 Both single and double quotes can be used to denote strings. For consistency,
 `vfmt` converts double quotes to single quotes unless the string contains a single quote character.
